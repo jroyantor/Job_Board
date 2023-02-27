@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListingTagTable extends Migration
+class CreateClicksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateListingTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('listing_tag', function (Blueprint $table) {
+        Schema::create('clicks', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->unsignedBigInteger('tag_id');
+            $table->text('user_agent')->nullable();
+            $table->string('ip')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class CreateListingTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listing_tag');
+        Schema::dropIfExists('clicks');
     }
 }
