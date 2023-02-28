@@ -6,11 +6,12 @@
       </h1>
       <p class="mb-8 leading-relaxed">Best IT Jobs curated from the industry in one place.</p>
       <div class="flex justify-center">
-        <form>
-        <input type="text" name="search">
+        <form action="{{ route('jobs.index') }}" method="get">
+        <input type="text" name="search" id="search" value="{{ request()->get('search') }}" class="bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-2 leading-8 transition-colors duration-200 ease-in-out">
         <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Search</button>
        </form>    
       </div>
+      <p class="text-sm mt-2 text-gray-500 mb-8 w-full">fullstack php, vue and node, react native</p>
     </div>
     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
       <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">

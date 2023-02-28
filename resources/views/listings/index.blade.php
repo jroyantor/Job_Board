@@ -14,7 +14,7 @@
     </div>
 </div>
     <div class="mb-12">
-        <h2 class="text-2xl font-medium text-gray-900 title-font px-4">All Jobs (45)</h2>
+        <h2 class="text-2xl font-medium text-gray-900 title-font px-4">All Jobs ({{$listings->count()}})</h2>
     </div>
 
     <div class="-my-6">
