@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-
+use Illuminate\Http\Request;
 
 Route::get('/',[Controllers\ListingController::class,'index'])
  ->name('jobs.index');
@@ -12,9 +12,16 @@ Route::get('/create',[Controllers\ListingController::class,'create'])
 Route::post('/create',[Controllers\ListingController::class,'store'])
 ->name('jobs.create');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function (Request $request) {
+    $listings =  $request->user()->listings;
+    return view('dashboard',['listings' => $listings]);
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/job/edit/{listing}',[Controllers\ListingController::class,'edit'])
+->middleware('auth');
+
+Route::post('/job/edit/{listing}',[Controllers\ListingController::class,'update'])
+->middleware('auth');
 
 require __DIR__.'/auth.php';
 

@@ -3,16 +3,16 @@
 
  <section class="container px-5 py-12 mx-auto">
     <div class="mb-12">
-    <div class="flex-justify-center">
-        @foreach($tags as $tag)
-        <a class="inline-block ml-2 tracking-wide text-xs font-medium title-font py-0.5 px-1.5 border border-indigo-500 uppercase {{ $tag->slug === request()->get('tag') ? 'bg-indigo-500 text-white' : 'bg-white text-indigo-500' }}"
-           href="{{ route('jobs.index',['tag'=>$tag->slug])}}"
-        >
-        {{$tag->name}}
-        </a>
-        @endforeach
+        <div class="flex-justify-center">
+            @foreach($tags as $tag)
+            <a class="inline-block ml-2 tracking-wide text-xs font-medium title-font py-0.5 px-1.5 border border-emerald-700 uppercase {{ $tag->slug === request()->get('tag') ? 'bg-emerald-700 text-white' : 'bg-white text-indigo-500' }}"
+            href="{{ route('jobs.index',['tag'=>$tag->slug])}}"
+            >
+            {{$tag->name}}
+            </a>
+            @endforeach
+        </div>
     </div>
-</div>
     <div class="mb-12">
         <h2 class="text-2xl font-medium text-gray-900 title-font px-4">All Jobs ({{$listings->count()}})</h2>
     </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="md:flex-grow mr-8 flex items-center justify-start">
                 @foreach($listing->tags as $tag)
-                    <span class="inline-block ml-2 tracking-wide text-xs font-medium title-font py-0.5 px-1.5 border border-indigo-500 uppercase {{ $tag->slug === request()->get('tag') ? 'bg-indigo-500 text-white' : 'bg-white text-indigo-500' }}">
+                    <span class="inline-block ml-2 tracking-wide text-xs font-medium title-font py-0.5 px-1.5 border border-emerald-700 uppercase {{ $tag->slug === request()->get('tag') ? 'bg-emerald-700 text-white' : 'bg-white text-indigo-500' }}">
                         {{ $tag->name }}
                     </span>
                 @endforeach

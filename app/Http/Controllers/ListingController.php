@@ -138,5 +138,15 @@ class ListingController extends Controller
 
     }
 
+    public function edit(Listing $listing){
+        $tags = $listing->tags()->select('name')->get();
+        $a = [];
+        foreach($tags as $tag){
+            array_push($a,$tag['name']);
+        }
+
+        return view('listings.edit',['listing'=>$listing,'array'=>$a]);
+    }
+
 }
 
