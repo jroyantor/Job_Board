@@ -7,6 +7,11 @@ use App\Http\Controllers;
 Route::get('/',[Controllers\ListingController::class,'index'])
  ->name('jobs.index');
 
+Route::get('/create',[Controllers\ListingController::class,'create'])
+->name('jobs.create');
+Route::post('/create',[Controllers\ListingController::class,'store'])
+->name('jobs.create');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

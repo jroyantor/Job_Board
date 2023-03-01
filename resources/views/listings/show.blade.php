@@ -2,15 +2,15 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-     <div class="md:flex-grow mr-8 mt-2 flex items-center justify-center">   
+     <div class="md:flex-grow mr-8 mt-2 flex">   
      @foreach($listing->tags as $tag)     
       <span class="inline-block uppercase px-4 py-4">
        {{$tag->name}}
       </span>
       @endforeach
       </div>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{$listing->title}}</h1>
-        <div class="mx-auto leading-relaxed text-base">
+      <h1 class="text-2xl font-medium title-font text-gray-900">{{$listing->title}}</h1>
+        <div class="leading-relaxed text-base">
         {!! $listing->description !!}
         </div>
     </div>
