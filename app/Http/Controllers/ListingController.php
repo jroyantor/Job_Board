@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Session;
 
 class ListingController extends Controller
 {
@@ -146,6 +147,62 @@ class ListingController extends Controller
         }
 
         return view('listings.edit',['listing'=>$listing,'array'=>$a]);
+    }
+
+    public function update(Listing $listing, Request $request){
+        
+        $validationData = [
+            'title' => 'required',
+            'company' => 'required',
+            'logo' => 'file|max:2048',
+            'location' => 'required',
+            'apply_link' => 'required|url',
+            'description' => 'required',
+        ];
+
+        $request->validate($validationData);
+
+        $md = new \ParsedownExtra();
+        $file_path = storage_path().'/app/public/'.$listing->logo;
+        
+        if($listing->user_id == Auth::user()->id){
+            $listing->title = $request->title;
+            $listing->company = $request->company;
+            if($request->hasFile('logo')){
+                if(\Storage::disk('public')->exists($listing->logo)){
+                    unlink($file_path);
+                }  
+                $listing->logo = basename($request->file('logo')->store('public'));
+            }
+            $listing->location = $request->location;
+            $listing->apply_link = $request->apply_link;
+            $listing->description = $md->text($request->description);
+
+            $a = [];
+
+            foreach(explode(',',$request->tags) as $r_tag){
+                $tag = Tag::firstOrCreate([
+                    'slug' => Str::slug(trim($r_tag))
+                ],[
+                    'name' => ucwords(trim($r_tag))
+                ]);
+                $t = Tag::where('name',$r_tag)->first();
+                array_push($a,$t->id);
+            }
+            
+            $listing->tags()->sync($a);
+
+            $listing->save();
+
+            Session::flash('success','Job Post Updated!');
+            return redirect()->route('dashboard');
+
+        }
+
+        else{
+            abort(403);
+        }
+
     }
 
 }

@@ -16,6 +16,10 @@ class CreateListingTagTable extends Migration
         Schema::create('listing_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('listing_id');
             $table->unsignedBigInteger('tag_id');
+            $table->unique(['listing_id' , 'tag_id']);
+
+            $table->foreign('listing_id')->references('id')->on('listings')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

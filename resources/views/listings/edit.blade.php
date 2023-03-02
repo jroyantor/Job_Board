@@ -16,12 +16,12 @@
                 </div>
             @endif
             <form
-                action="{{ url('job/edit/'.$listing->slug) }}"
+                action="{{ route('job.update',$listing->slug) }}"
                 method="post"
                 enctype="multipart/form-data"
                 class="bg-gray-100 p-4"
             >
-            @csrf
+            
             <div class="mb-4 mx-2">
                     <x-label for="title" value="Job Title" />
                     <x-input
@@ -44,12 +44,12 @@
                 </div>
                 <div class="mb-4 mx-2">
                     <x-label for="logo" value="Company Logo" />
-                    <img src="/storage/{{ $listing->logo }}" height="100" width="100"/>
                     <x-input
                         id="logo"
                         class="block mt-1 w-full"
                         type="file"
                         name="logo" />
+                        
                 </div>
                 <div class="mb-4 mx-2">
                     <x-label for="location" value="Location (e.g. Remote, United States)" />
@@ -93,6 +93,7 @@
                     <div id="card-element"></div>
                 </div>
                 <div class="mb-2 mx-2">
+                @csrf
                     <button type="submit" id="form_submit" class="block w-full items-center bg-indigo-500 text-white border-0 py-2 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0">Update</button>
                 </div>
             </form>
