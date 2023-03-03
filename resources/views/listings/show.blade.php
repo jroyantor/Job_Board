@@ -2,17 +2,18 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-     <div class="md:flex-grow mr-8 mt-2 flex">   
-     @foreach($listing->tags as $tag)     
-      <span class="inline-block uppercase px-4 py-4">
-       {{$tag->name}}
-      </span>
-      @endforeach
-      </div>
       <h1 class="text-2xl font-medium title-font text-gray-900">{{$listing->title}}</h1>
         <div class="leading-relaxed text-base">
         {!! $listing->description !!}
         </div>
+
+        <div class="md:flex-grow mr-8 mt-4 flex justify-center">   
+          @foreach($listing->tags as $tag)     
+            <span class="inline-block uppercase m-4 px-2 py-2 bg-emerald-500">
+            {{$tag->name}}
+            </span>
+            @endforeach
+         </div>
     </div>
     <div class="flex flex-wrap">
       <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">

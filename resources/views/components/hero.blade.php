@@ -14,7 +14,7 @@
       <p class="text-sm mt-2 text-gray-500 mb-8 w-full">fullstack php, vue and node, react native</p>
     </div>
     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-      <img class="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600">
+      <img class="object-cover object-center rounded" alt="hero" src="{{ asset('images/banner.svg')}}">
     </div>
   </div>
 </section>
