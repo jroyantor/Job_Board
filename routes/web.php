@@ -23,6 +23,9 @@ Route::get('/job/edit/{listing}',[Controllers\ListingController::class,'edit'])
 Route::post('/job/edit/{listing}',[Controllers\ListingController::class,'update'])
 ->middleware('auth')->name('job.update');
 
+Route::post('/job/inactive/{listing}',[Controllers\ListingController::class,'inactive'])
+->middleware('auth')->name('job.inactive');
+
 require __DIR__.'/auth.php';
 
 Route::get('/{listing}',[Controllers\ListingController::class,'show'])

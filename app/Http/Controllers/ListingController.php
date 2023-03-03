@@ -205,5 +205,18 @@ class ListingController extends Controller
 
     }
 
+    public function inactive(Listing $listing){
+        if($listing->user_id == Auth::user()->id){
+            $listing->is_active = false;
+            $listing->save();
+            Session::flash('success','Job post deactivated');
+            return redirect()->route('dashboard');
+        }
+
+        else {
+            abort('403');
+        }
+    }
+
 }
 

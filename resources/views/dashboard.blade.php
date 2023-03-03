@@ -15,8 +15,9 @@
             </div>
         @endif
       @foreach($listings as $listing) 
+      <div class="mt-4">
       <a href="{{ route('jobs.show',$listing->slug)}}"
-        class="py-6 px-4 flex flex-wrap md:flex-nowrap border-b border-gray-100 {{ $listing->is_highlighted ? 'bg-yellow-100 hover:bg-yellow-200' : 'bg-white hover:bg-gray-100' }}"
+        class="py-6 px-6 flex flex-wrap md:flex-nowrap border-b border-gray-100 {{ $listing->is_highlighted ? 'bg-yellow-100 hover:bg-yellow-200' : 'bg-white hover:bg-gray-100' }}"
         > 
         <div class="md:w-16 md:mb-0 mb-6 mr-4 flex-shrink-0 flex flex-col">
             <img src="/storage/{{ $listing->logo }}" alt="{{ $listing->company }} logo" class="w-16 h-16 rounded-full object-cover">
@@ -38,10 +39,26 @@
                 <span>{{ $listing->created_at->diffForHumans() }}</span>
             </span>
         </a>
-        <a href="{{url('job/edit/'.$listing->slug)}}">Edit Job Post</a>
+        <a href="{{url('job/edit/'.$listing->slug)}}" class="border border-indigo-300">Edit Job Post</a>
+        @if($listing->is_active)
+        <button onclick="return makeInactive();" class="border border-indigo-300">Make Inactive</button>
+        @endif
+        <form id="inactive_form" method="POST" action="{{ route('job.inactive',$listing->slug)}}">
+            @csrf
+        </form>
+        </div>
         @endforeach
     </div>
 
 </section>
+
+<script>
+    function makeInactive(){
+        if(confirm("Inactive this post?")){
+            event.preventDefault();
+            document.getElementById('inactive_form').submit();
+        }
+    }
+</script>
 
 </x-app-layout>
